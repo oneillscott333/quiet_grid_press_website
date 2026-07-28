@@ -12,13 +12,13 @@ dist/
 *.pem
 *.key
 
-private/
-governance/
-consolidated/
-brand/
-books/
-social_media/
-email/
-z_todo/
+/private/
+/governance/
+/consolidated/
+/brand/
+/books/
+/social_media/
+/email/
+/z_todo/
 
 REVIEW_RECORD.md

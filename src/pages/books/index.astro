@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BookCard from "../../components/BookCard.astro";
+---
+
+<BaseLayout
+  title="Books | Quiet Grid Press"
+  description="Explore thoughtfully designed Quiet Grid Press puzzle books."
+>
+  <section class="page-intro paper-texture">
+    <div class="shell narrow">
+      <p class="eyebrow">The Quiet Grid Press Collection</p>
+      <h1>Books Worth Returning To</h1>
+      <p class="lede">
+        Each book begins with a clear purpose: a comfortable solving
+        experience, honest challenge, and a theme that adds enjoyment without
+        adding noise.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="shell catalog-grid">
+      <BookCard />
+    </div>
+  </section>
+</BaseLayout>

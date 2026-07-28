@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="USA250 Sudoku | Quiet Grid Press"
+  description="250 Sudoku puzzles celebrating America's 250th anniversary, with Easy, Medium, and Hard levels."
+>
+  <section class="book-detail-hero paper-texture">
+    <div class="shell book-detail-grid">
+      <div class="detail-cover cover-shadow">
+        <img
+          src="/images/usa250-cover.webp"
+          srcset="
+            /images/usa250-cover-450.webp 450w,
+            /images/usa250-cover.webp 900w
+          "
+          sizes="(max-width: 680px) 78vw, 430px"
+          alt="USA250 Sudoku book cover"
+          width="720"
+          height="972"
+        />
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">Quiet Grid Press · Now Available</p>
+        <h1>USA250 Sudoku</h1>
+        <p class="subtitle">250 Puzzles Celebrating America’s 250th Anniversary</p>
+        <p class="lede">
+          A commemorative Sudoku collection inspired by the people, places,
+          ideas, landmarks, and achievements that have shaped the American
+          story.
+        </p>
+        <div class="detail-facts" aria-label="Book details">
+          <span><strong>250</strong> puzzles</span>
+          <span><strong>314</strong> pages</span>
+          <span><strong>8.5 × 11</strong> inches</span>
+          <span><strong>Easy–Hard</strong> progression</span>
+        </div>
+        <a
+          class="button"
+          href="https://www.amazon.com/dp/B0H7QJJYWZ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on Amazon
+        </a>
+        <p class="retailer-note">Current price and availability are shown on Amazon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell prose-grid">
+      <div>
+        <p class="eyebrow">Inside the Book</p>
+        <h2>A Quiet Challenge with an American Story</h2>
+      </div>
+      <div class="prose">
+        <p>
+          <em>USA250 Sudoku</em> brings together 250 Sudoku puzzles in a
+          keepsake collection inspired by the people, places, ideas, landmarks,
+          and achievements that have shaped the American story. The themed
+          chapters add interest and context while keeping the focus where it
+          belongs: a satisfying puzzle and a quiet moment to solve it.
+        </p>
+        <p>
+          Puzzles progress through Easy, Medium, and Hard difficulty levels,
+          offering an enjoyable path for newer solvers and a worthwhile
+          challenge for experienced players.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="shell">
+      <div class="section-heading centered">
+        <p class="eyebrow">What You Will Find</p>
+        <h2>Substantial, Clear, and Complete</h2>
+      </div>
+      <div class="spec-grid">
+        <article>
+          <span>250</span>
+          <h3>Sudoku Puzzles</h3>
+          <p>Hours of focused, screen-free solving.</p>
+        </article>
+        <article>
+          <span>10</span>
+          <h3>Themed Chapters</h3>
+          <p>Americana-inspired structure and visual interest.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Difficulty Levels</h3>
+          <p>Easy, Medium, and Hard puzzles.</p>
+        </article>
+        <article>
+          <span>100%</span>
+          <h3>Complete Answers</h3>
+          <p>Every puzzle is supported by the answer section.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell closing-card">
+      <div>
+        <p class="eyebrow">A Thoughtful Commemorative Gift</p>
+        <h2>Mark 250 Years with 250 Satisfying Puzzles</h2>
+        <p>
+          Choose it as a patriotic gift, a screen-free daily pastime, or a
+          personal keepsake for America’s semiquincentennial.
+        </p>
+      </div>
+      <a
+        class="button"
+        href="https://www.amazon.com/dp/B0H7QJJYWZ"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on Amazon
+      </a>
+    </div>
+  </section>
+</BaseLayout>
