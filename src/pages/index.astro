@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BookCard from "../components/BookCard.astro";
+import EmailSignup from "../components/EmailSignup.astro";
+---
+
+<BaseLayout
+  title="Quiet Grid Press | Puzzle Books for Adults 50+"
+  description="Calm, thoughtfully designed puzzle books for adults 50+, beginning with USA250 Sudoku."
+>
+  <section class="hero paper-texture">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Puzzle Books for Adults 50+</p>
+        <h1>Puzzle Books Made for Quiet, Satisfying Moments</h1>
+        <p class="lede">
+          Clean pages, honest difficulty, and thoughtful themes. Quiet Grid
+          Press creates recreational puzzle books designed to feel calm,
+          polished, and enjoyable from the first page to the last.
+        </p>
+        <div class="button-row">
+          <a
+            class="button"
+            href="https://www.amazon.com/dp/B0H7QJJYWZ"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="amazon-outbound"
+          >
+            View on Amazon
+          </a>
+          <a class="button button-secondary" href="/books/usa250-sudoku/">
+            Explore the Book
+          </a>
+        </div>
+      </div>
+      <div class="hero-book">
+        <div class="cover-shadow">
+          <a
+            href="https://www.amazon.com/dp/B0H7QJJYWZ"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="amazon-outbound"
+            aria-label="View USA250 Sudoku on Amazon"
+          >
+            <img
+              src="/images/usa250-cover.webp"
+              srcset="
+                /images/usa250-cover-450.webp 450w,
+                /images/usa250-cover.webp 900w
+              "
+              sizes="(max-width: 680px) 78vw, 425px"
+              alt="USA250 Sudoku book cover"
+              width="720"
+              height="972"
+            />
+          </a>
+        </div>
+        <div class="hero-note">
+          <span>250 puzzles</span>
+          <span>10 themed chapters</span>
+          <span>Complete answers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell split-heading">
+      <div>
+        <p class="eyebrow">The First Quiet Grid Press Book</p>
+        <h2>Celebrate America, One Puzzle at a Time</h2>
+      </div>
+      <p>
+        USA250 Sudoku pairs a satisfying Easy-to-Hard progression with
+        Americana-inspired chapters in a substantial keepsake volume.
+      </p>
+    </div>
+    <div class="shell featured-book">
+      <BookCard
+        href="https://www.amazon.com/dp/B0H7QJJYWZ"
+        linkLabel="View on Amazon"
+        external={true}
+      />
+      <div class="feature-list">
+        <div>
+          <span class="feature-number">01</span>
+          <h3>Comfortable Format</h3>
+          <p>An 8.5 × 11-inch page gives each puzzle room to breathe.</p>
+        </div>
+        <div>
+          <span class="feature-number">02</span>
+          <h3>Clear Progression</h3>
+          <p>Easy, Medium, and Hard puzzles create an inviting path forward.</p>
+        </div>
+        <div>
+          <span class="feature-number">03</span>
+          <h3>Complete Answers</h3>
+          <p>A full answer section makes checking your work straightforward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-band">
+    <div class="shell values-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">What Guides the Work</p>
+        <h2>Care You Can Feel on the Page</h2>
+      </div>
+      <div class="value">
+        <h3>Calm</h3>
+        <p>Uncluttered layouts and a screen-free pause from the day.</p>
+      </div>
+      <div class="value">
+        <h3>Clarity</h3>
+        <p>Accurate difficulty, readable information, and no filler.</p>
+      </div>
+      <div class="value">
+        <h3>Quality</h3>
+        <p>Thoughtful themes, careful checking, and a premium finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <EmailSignup />
+    </div>
+  </section>
+</BaseLayout>

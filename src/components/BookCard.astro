@@ -1,0 +1,42 @@
+---
+const {
+  href = "/books/usa250-sudoku/",
+  cover = "/images/usa250-cover.webp",
+  coverSmall = "/images/usa250-cover-450.webp",
+  title = "USA250 Sudoku",
+  kicker = "250 puzzles · Easy, Medium, and Hard",
+  linkLabel = "Explore the book",
+  external = false,
+} = Astro.props;
+
+const externalAttributes = external
+  ? {
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "data-track": "amazon-outbound",
+    }
+  : {};
+---
+
+<article class="book-card">
+  <a class="book-cover-link" href={href} {...externalAttributes}>
+    <img
+      class="book-cover"
+      src={cover}
+      srcset={`${coverSmall} 450w, ${cover} 900w`}
+      sizes="(max-width: 680px) 118px, (max-width: 920px) 34vw, 290px"
+      alt="Cover of USA250 Sudoku"
+      width="720"
+      height="972"
+      loading="lazy"
+    />
+  </a>
+  <div class="book-card-copy">
+    <p class="eyebrow">Now Available</p>
+    <h3><a href={href} {...externalAttributes}>{title}</a></h3>
+    <p>{kicker}</p>
+    <a class="text-link" href={href} {...externalAttributes}>
+      {linkLabel} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
