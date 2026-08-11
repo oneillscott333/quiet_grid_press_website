@@ -6,7 +6,7 @@ import EmailUpdates from "../components/EmailUpdates.astro";
 
 <BaseLayout
   title="Quiet Grid Press | Puzzle Books for Adults 50+"
-  description="Calm, thoughtfully designed puzzle books for adults 50+, beginning with USA250 Sudoku."
+  description="Calm, thoughtfully designed puzzle books for adults 50+, including Bible Verse Sudoku and USA250 Sudoku."
 >
   <section class="hero paper-texture">
     <div class="shell hero-grid">
@@ -21,14 +21,14 @@ import EmailUpdates from "../components/EmailUpdates.astro";
         <div class="button-row">
           <a
             class="button"
-            href="https://www.amazon.com/dp/B0H7QJJYWZ"
+            href="https://www.amazon.com/dp/B0HDL8V5ZZ"
             target="_blank"
             rel="noopener noreferrer"
             data-track="amazon-outbound"
           >
-            View on Amazon
+            View Bible Verse Sudoku on Amazon
           </a>
-          <a class="button button-secondary" href="/books/usa250-sudoku/">
+          <a class="button button-secondary" href="/books/bible-verse-sudoku/">
             Explore the Book
           </a>
         </div>
@@ -36,28 +36,28 @@ import EmailUpdates from "../components/EmailUpdates.astro";
       <div class="hero-book">
         <div class="cover-shadow">
           <a
-            href="https://www.amazon.com/dp/B0H7QJJYWZ"
+            href="https://www.amazon.com/dp/B0HDL8V5ZZ"
             target="_blank"
             rel="noopener noreferrer"
             data-track="amazon-outbound"
-            aria-label="View USA250 Sudoku on Amazon"
+            aria-label="View Bible Verse Sudoku on Amazon"
           >
             <img
-              src="/images/usa250-cover.webp"
+              src="/images/bible120-cover.webp"
               srcset="
-                /images/usa250-cover-450.webp 450w,
-                /images/usa250-cover.webp 900w
+                /images/bible120-cover-450.webp 450w,
+                /images/bible120-cover.webp 900w
               "
               sizes="(max-width: 680px) 78vw, 425px"
-              alt="USA250 Sudoku book cover"
-              width="720"
-              height="972"
+              alt="Bible Verse Sudoku: King James Version Edition book cover"
+              width="900"
+              height="1167"
             />
           </a>
         </div>
         <div class="hero-note">
-          <span>250 puzzles</span>
-          <span>10 themed chapters</span>
+          <span>120 easy puzzles</span>
+          <span>12 themed chapters</span>
           <span>Complete answers</span>
         </div>
       </div>
@@ -67,19 +67,19 @@ import EmailUpdates from "../components/EmailUpdates.astro";
   <section class="section">
     <div class="shell split-heading">
       <div>
-        <p class="eyebrow">The First Quiet Grid Press Book</p>
+        <p class="eyebrow">Also from Quiet Grid Press</p>
         <h2>Celebrate America, One Puzzle at a Time</h2>
       </div>
       <p>
-        USA250 Sudoku pairs a satisfying Easy-to-Hard progression with
-        Americana-inspired chapters in a substantial keepsake volume.
+        USA250 Sudoku is our first full-length collection: 250 puzzles with an
+        Easy-to-Hard progression and Americana-inspired chapters.
       </p>
     </div>
     <div class="shell featured-book">
       <BookCard
-        href="https://www.amazon.com/dp/B0H7QJJYWZ"
-        linkLabel="View on Amazon"
-        external={true}
+        href="/books/usa250-sudoku/"
+        title="USA250 Sudoku"
+        kicker="250 puzzles · Easy, Medium, and Hard"
       />
       <div class="feature-list">
         <div>
