@@ -542,42 +542,72 @@ nav a[aria-current="page"]::after {
   background: var(--cream);
 }
 
-.updates-mark {
-  min-height: 150px;
+.email-signup {
   padding: 30px;
-  display: flex;
-  align-items: center;
-  gap: 22px;
   border: 1px solid var(--gold-light);
   border-radius: 12px;
   color: var(--cream);
   background: var(--evergreen);
 }
 
-.updates-mark .grid-mark {
-  flex: 0 0 50px;
-  width: 50px;
-  height: 50px;
-}
-
-.updates-mark p {
-  margin: 0;
+.email-signup > label {
+  display: block;
+  margin-bottom: 10px;
   font-family: var(--sans);
-  font-size: 0.88rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.updates-mark small {
-  margin-top: 7px;
-  display: block;
+.email-signup-row {
+  display: flex;
+  gap: 10px;
+}
+
+.email-signup input[type="email"] {
+  min-width: 0;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 15px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: var(--ink);
+  background: var(--white);
+  font: inherit;
+}
+
+.email-signup input[type="email"]:focus {
+  outline: 3px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+.email-signup .button {
+  flex: 0 0 auto;
+  border-color: var(--gold-light);
+  color: var(--evergreen);
+  background: var(--gold-light);
+  white-space: nowrap;
+}
+
+.email-signup-note {
+  margin: 14px 0 0;
   color: #d8e2dc;
-  font-size: 0.68rem;
-  font-weight: 450;
-  letter-spacing: 0;
+  font-size: 0.76rem;
   line-height: 1.5;
-  text-transform: none;
+}
+
+.email-signup-note a {
+  color: var(--white);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .page-intro {
@@ -1018,6 +1048,14 @@ address {
 
   .updates-panel {
     gap: 30px;
+  }
+
+  .email-signup-row {
+    flex-direction: column;
+  }
+
+  .email-signup .button {
+    justify-content: center;
   }
 
   .detail-facts,
