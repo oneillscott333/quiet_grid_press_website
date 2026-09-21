@@ -1,0 +1,14 @@
+name: Daily rebuild (reveal scheduled posts)
+# Triggers a Netlify build every morning so blog posts whose publishDate has
+# arrived become visible. Requires repository secret NETLIFY_BUILD_HOOK
+# (Netlify: Site configuration > Build & deploy > Build hooks > Add build hook).
+on:
+  schedule:
+    - cron: "0 12 * * *"   # 12:00 UTC = 5:00 AM Phoenix (MST, no DST)
+  workflow_dispatch:
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify build hook
+        run: curl -s -X POST -d '{}' "${{ secrets.NETLIFY_BUILD_HOOK }}"

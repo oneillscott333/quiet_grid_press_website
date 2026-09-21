@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedPosts } from "../../lib/posts";
+
+const posts = await getPublishedPosts();
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<BaseLayout
+  title="Blog | Quiet Grid Press"
+  description="Quiet puzzle routines, solving guidance, and notes from Quiet Grid Press."
+>
+  <section class="page-intro paper-texture">
+    <div class="shell narrow">
+      <p class="eyebrow">The Quiet Grid Press Blog</p>
+      <h1>Notes for a Quiet Puzzle Routine</h1>
+      <p class="lede">
+        Practical solving guidance, a look at how our books are made, and
+        thoughtful themes for your next quiet half hour.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell narrow">
+      {
+        posts.length === 0 ? (
+          <p class="blog-empty">
+            The first article is on its way. In the meantime, we invite you to
+            explore <a href="/books/">our books</a>.
+          </p>
+        ) : (
+          <ul class="post-list">
+            {posts.map((post) => (
+              <li class="post-card">
+                <p class="post-date">{formatDate(post.data.publishDate)}</p>
+                <h2>
+                  <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                </h2>
+                <p>{post.data.description}</p>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .post-card {
+    background: var(--white, #fffefa);
+    border: 1px solid var(--line, #d8d1c1);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+  }
+  .post-card h2 {
+    margin: 0.25rem 0 0.5rem;
+  }
+  .post-card h2 a {
+    text-decoration: none;
+  }
+  .post-card h2 a:hover {
+    text-decoration: underline;
+  }
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--muted, #5e655f);
+    margin: 0;
+  }
+  .blog-empty {
+    text-align: center;
+  }
+</style>

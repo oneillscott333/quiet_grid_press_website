@@ -1,0 +1,86 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPublishedPosts } from "../../lib/posts";
+import EmailUpdates from "../../components/EmailUpdates.astro";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const bookLinks: Record<string, { href: string; label: string }> = {
+  "bible-verse-sudoku": {
+    href: "/books/bible-verse-sudoku/",
+    label: "Bible Verse Sudoku",
+  },
+  "usa250-sudoku": { href: "/books/usa250-sudoku/", label: "USA250 Sudoku" },
+};
+const relatedBook = bookLinks[post.data.book];
+---
+
+<BaseLayout
+  title={`${post.data.title} | Quiet Grid Press`}
+  description={post.data.description}
+>
+  <section class="page-intro paper-texture">
+    <div class="shell narrow">
+      <p class="eyebrow">From the Blog</p>
+      <h1>{post.data.title}</h1>
+      <p class="post-date">{formatDate(post.data.publishDate)}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell narrow">
+      <div class="prose">
+        <Content />
+      </div>
+      {
+        relatedBook && (
+          <p class="related-book">
+            This article accompanies{" "}
+            <a href={relatedBook.href}>{relatedBook.label}</a>.
+          </p>
+        )
+      }
+      <p class="back-link"><a href="/blog/">&larr; All articles</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell narrow">
+      <EmailUpdates />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-date {
+    color: var(--muted, #5e655f);
+    font-size: 0.9rem;
+  }
+  .related-book {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--white, #fffefa);
+    border: 1px solid var(--line, #d8d1c1);
+    border-radius: 10px;
+  }
+  .back-link {
+    margin-top: 2rem;
+  }
+</style>
