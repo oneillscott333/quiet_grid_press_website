@@ -1,0 +1,44 @@
+# Quiet Grid Press short links. Built from 02_brand/qgp_short_links.json (Cowork). Do not edit by hand.
+# Format: /code  destination  status. 302 so a destination can change later; a code is never removed once printed.
+
+/kjv  https://www.gutenberg.org/ebooks/10900  302
+/book1  /books/bible-verse-sudoku/?utm_source=book&utm_medium=print&utm_campaign=001_sudoku_bible_verse&utm_content=back_page_website  302
+/book2  /books/?utm_source=book&utm_medium=print&utm_campaign=003_sudoku_bible_verse_psalms&utm_content=back_page_website  302
+/book3  /books/?utm_source=book&utm_medium=print&utm_campaign=004_sudoku_bible_verse_proverbs_wisdom&utm_content=back_page_website  302
+/book4  /books/?utm_source=book&utm_medium=print&utm_campaign=005_sudoku_bible_verse_words_of_jesus&utm_content=back_page_website  302
+/book5  /books/?utm_source=book&utm_medium=print&utm_campaign=006_sudoku_bible_verse_parables&utm_content=back_page_website  302
+/book6  /books/?utm_source=book&utm_medium=print&utm_campaign=007_sudoku_bible_verse_women_of_scripture&utm_content=back_page_website  302
+/book7  /books/?utm_source=book&utm_medium=print&utm_campaign=008_sudoku_bible_verse_journeys&utm_content=back_page_website  302
+/usa250  /books/usa250-sudoku/?utm_source=book&utm_medium=print&utm_campaign=002_sudoku_usa250&utm_content=back_page_website  302
+/fb01  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post01  302
+/fb02  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post02  302
+/fb03  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post03  302
+/fb04  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post04  302
+/fb05  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post05  302
+/fb06  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post06  302
+/fb07  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post07  302
+/fb08  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post08  302
+/fb09  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post09  302
+/fb10  /?utm_source=facebook&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post10  302
+/pin01  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post01  302
+/pin02  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post02  302
+/pin03  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post03  302
+/pin04  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post04  302
+/pin05  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post05  302
+/pin06  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post06  302
+/pin07  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post07  302
+/pin08  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post08  302
+/pin09  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post09  302
+/pin10  /?utm_source=pinterest&utm_medium=social&utm_campaign=001_foundation_posts&utm_content=post10  302
+/yt01  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post01  302
+/yt02  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post02  302
+/yt03  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post03  302
+/yt04  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post04  302
+/yt05  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post05  302
+/yt06  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post06  302
+/yt07  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post07  302
+/yt08  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post08  302
+/yt09  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post09  302
+/yt10  /?utm_source=youtube&utm_medium=video&utm_campaign=001_foundation_posts&utm_content=post10  302
+
+# Planned, not active (needs the Amazon Attribution tags): /amazon-... 
