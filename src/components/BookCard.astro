@@ -4,6 +4,7 @@ const {
   cover = "/images/usa250-cover.webp",
   coverSmall = "/images/usa250-cover-450.webp",
   title = "USA250 Sudoku",
+  alt = "Cover of USA250 Sudoku",
   kicker = "250 puzzles · Easy, Medium, and Hard",
   coverWidth = 720,
   coverHeight = 972,
@@ -27,7 +28,7 @@ const externalAttributes = external
       src={cover}
       srcset={`${coverSmall} 450w, ${cover} 900w`}
       sizes="(max-width: 680px) 118px, (max-width: 920px) 34vw, 290px"
-      alt="Cover of USA250 Sudoku"
+      alt={alt}
       width={coverWidth}
       height={coverHeight}
       loading="lazy"
