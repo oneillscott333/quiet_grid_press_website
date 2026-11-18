@@ -1,0 +1,222 @@
+[
+  {
+    "code": "bvfb02",
+    "book_number": 1,
+    "book_title": "Bible Verse Sudoku",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin02",
+    "book_number": 1,
+    "book_title": "Bible Verse Sudoku",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb03",
+    "book_number": 2,
+    "book_title": "Bible Verse Sudoku: Psalms",
+    "opens_number": 2,
+    "opens_title": "Bible Verse Sudoku: Psalms",
+    "opens_cover": "bible-psalms-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8DLNTH",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin03",
+    "book_number": 2,
+    "book_title": "Bible Verse Sudoku: Psalms",
+    "opens_number": 2,
+    "opens_title": "Bible Verse Sudoku: Psalms",
+    "opens_cover": "bible-psalms-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8DLNTH",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb04",
+    "book_number": 4,
+    "book_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_number": 4,
+    "opens_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_cover": "bible-jesus-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRR9NK5Y",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin04",
+    "book_number": 4,
+    "book_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_number": 4,
+    "opens_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_cover": "bible-jesus-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRR9NK5Y",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb05",
+    "book_number": 6,
+    "book_title": "Bible Verse Sudoku: Women of Scripture",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvpin05",
+    "book_number": 6,
+    "book_title": "Bible Verse Sudoku: Women of Scripture",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvfb06",
+    "book_number": 3,
+    "book_title": "Bible Verse Sudoku: Proverbs and Ecclesiastes",
+    "opens_number": 3,
+    "opens_title": "Bible Verse Sudoku: Proverbs and Ecclesiastes",
+    "opens_cover": "bible-proverbs-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8M8W1T",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin06",
+    "book_number": 3,
+    "book_title": "Bible Verse Sudoku: Proverbs and Ecclesiastes",
+    "opens_number": 3,
+    "opens_title": "Bible Verse Sudoku: Proverbs and Ecclesiastes",
+    "opens_cover": "bible-proverbs-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8M8W1T",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb07",
+    "book_number": 5,
+    "book_title": "Bible Verse Sudoku: Parables",
+    "opens_number": 5,
+    "opens_title": "Bible Verse Sudoku: Parables",
+    "opens_cover": "bible-parables-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRRG1925",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin07",
+    "book_number": 5,
+    "book_title": "Bible Verse Sudoku: Parables",
+    "opens_number": 5,
+    "opens_title": "Bible Verse Sudoku: Parables",
+    "opens_cover": "bible-parables-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRRG1925",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb08",
+    "book_number": 7,
+    "book_title": "Bible Verse Sudoku: Journeys",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvpin08",
+    "book_number": 7,
+    "book_title": "Bible Verse Sudoku: Journeys",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvfb09",
+    "book_number": 2,
+    "book_title": "Bible Verse Sudoku: Psalms",
+    "opens_number": 2,
+    "opens_title": "Bible Verse Sudoku: Psalms",
+    "opens_cover": "bible-psalms-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8DLNTH",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin09",
+    "book_number": 2,
+    "book_title": "Bible Verse Sudoku: Psalms",
+    "opens_number": 2,
+    "opens_title": "Bible Verse Sudoku: Psalms",
+    "opens_cover": "bible-psalms-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HR8DLNTH",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb10",
+    "book_number": 4,
+    "book_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_number": 4,
+    "opens_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_cover": "bible-jesus-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRR9NK5Y",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin10",
+    "book_number": 4,
+    "book_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_number": 4,
+    "opens_title": "Bible Verse Sudoku: The Words of Jesus",
+    "opens_cover": "bible-jesus-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HRR9NK5Y",
+    "stand_in": false
+  },
+  {
+    "code": "bvfb11",
+    "book_number": 6,
+    "book_title": "Bible Verse Sudoku: Women of Scripture",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvpin11",
+    "book_number": 6,
+    "book_title": "Bible Verse Sudoku: Women of Scripture",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": true
+  },
+  {
+    "code": "bvfb12",
+    "book_number": 1,
+    "book_title": "Bible Verse Sudoku",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": false
+  },
+  {
+    "code": "bvpin12",
+    "book_number": 1,
+    "book_title": "Bible Verse Sudoku",
+    "opens_number": 1,
+    "opens_title": "Bible Verse Sudoku",
+    "opens_cover": "bible120-cover",
+    "amazon_url": "https://www.amazon.com/dp/B0HDL8V5ZZ",
+    "stand_in": false
+  }
+]

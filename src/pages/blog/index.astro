@@ -1,23 +1,108 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import blog from "../../data/blog_posts.json";
+
+// The public site shows a post only when it is approved AND its date has come; the check runs on the day the
+// site is built, so the morning rebuild puts a post up on its day. The local preview also shows the rest, marked.
+// The data comes from build_blog.py; a post is approved only when Scott has approved its words, picture and date.
+const preview = import.meta.env.DEV;
+const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Phoenix" }); // yyyy-mm-dd, Scott's day
+const isPublic = (p) => p.status === "approved" && !!p.date && p.date <= today;
+// The local preview also reads the unapproved posts from blog_drafts.json (git-ignored; see build_blog.py).
+const drafts = preview ? Object.values(import.meta.glob("../../data/blog_drafts.json", { eager: true }))[0]?.default?.posts ?? [] : [];
+const posts = [...blog.posts, ...drafts]
+  .filter((p) => isPublic(p) || preview)
+  .sort((a, b) => (b.date || "0000").localeCompare(a.date || "0000"));
+const heroUrl = (p) =>
+  !p.hero ? null : p.status === "approved" ? `/images/blog/${p.hero}` : `/blog/draft-picture/${p.hero}`;
+const showDate = (d) =>
+  new Date(`${d}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+// A post Scott has approved in full that only waits for a book to be on sale.
+const heldForBook = (p) =>
+  p.status !== "approved" && p.waiting.length > 0 && p.waiting.every((w) => w.startsWith("a book to be on sale"));
+const booksWaited = (p) =>
+  p.waiting
+    .join(" ")
+    .match(/00\d/g)
+    .map((c) => ({ "007": "Book 6, Women of Scripture", "008": "Book 7, Journeys" })[c] ?? c)
+    .join(" and ");
 ---
 
-<BaseLayout
-  title="Blog | Quiet Grid Press"
-  description="The Quiet Grid Press blog is under construction."
->
-  <section class="page-intro paper-texture">
-    <div class="shell narrow">
-      <p class="eyebrow">Blog</p>
-      <h1>Under Construction</h1>
-      <p class="lede">
-        We are preparing a quiet place for puzzle tips, notes on new books,
-        and news from Quiet Grid Press. Please check back soon.
-      </p>
-      <div class="button-row centered-buttons">
-        <a class="button" href="/books/">Explore the Books</a>
-        <a class="button button-secondary" href="/">Return Home</a>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+{
+  posts.length === 0 ? (
+    <BaseLayout
+      title="Blog | Quiet Grid Press"
+      description="The Quiet Grid Press blog is under construction."
+    >
+      <section class="page-intro paper-texture">
+        <div class="shell narrow">
+          <p class="eyebrow">Blog</p>
+          <h1>Under Construction</h1>
+          <p class="lede">
+            We are preparing a quiet place for puzzle tips, notes on new books,
+            and news from Quiet Grid Press. Please check back soon.
+          </p>
+          <div class="button-row centered-buttons">
+            <a class="button" href="/books/">Explore the Books</a>
+            <a class="button button-secondary" href="/">Return Home</a>
+          </div>
+        </div>
+      </section>
+    </BaseLayout>
+  ) : (
+    <BaseLayout
+      title="Blog | Quiet Grid Press"
+      description="Puzzle tips, notes on new books, and news from Quiet Grid Press."
+    >
+      <section class="page-intro paper-texture">
+        <div class="shell narrow">
+          <p class="eyebrow">Quiet Grid Press</p>
+          <h1>Blog</h1>
+          <p class="lede">
+            Puzzle tips, notes on new books, and news from Quiet Grid Press.
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="shell blog-list">
+          {posts.map((p) => (
+            <article class="blog-card">
+              {heroUrl(p) && (
+                <a class="blog-card-picture" href={`/blog/${p.slug}/`} tabindex="-1" aria-hidden="true">
+                  <img src={heroUrl(p)} alt="" width="1600" height="900" loading="lazy" />
+                </a>
+              )}
+              <div class="blog-card-copy">
+                {p.date && isPublic(p) && <p class="blog-date">{showDate(p.date)}</p>}
+                <h2>
+                  <a href={`/blog/${p.slug}/`}>{p.title}</a>
+                </h2>
+                <p>{p.summary}</p>
+                <a class="text-link" href={`/blog/${p.slug}/`}>
+                  Read the post <span aria-hidden="true">→</span>
+                </a>
+                {p.status !== "approved" && !heldForBook(p) && (
+                  <p class="blog-draft-tag">
+                    Draft: not approved, not on the public site.
+                    {p.date ? <> Planned for {showDate(p.date)}.</> : <> No date yet.</>}
+                    {p.waiting.length > 0 && <> Waits for: {p.waiting.join("; ")}.</>}
+                  </p>
+                )}
+                {heldForBook(p) && (
+                  <p class="blog-draft-tag">
+                    Approved. Held off the public site until {booksWaited(p)} {booksWaited(p).includes(" and ") ? "are" : "is"} on sale; planned for {showDate(p.date)}.
+                  </p>
+                )}
+                {p.status === "approved" && !isPublic(p) && (
+                  <p class="blog-draft-tag">
+                    Approved. Not on the public site yet: it goes up by itself on {showDate(p.date)}.
+                  </p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </BaseLayout>
+  )
+}

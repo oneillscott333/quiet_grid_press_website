@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BookCard from "../../components/BookCard.astro";
+import series from "../../data/bible_series.json";
 ---
 
 <BaseLayout
@@ -20,16 +21,21 @@ import BookCard from "../../components/BookCard.astro";
   </section>
   <section class="section">
     <div class="shell catalog-grid">
-      <BookCard
-        href="/books/bible-verse-sudoku/"
-        cover="/images/bible120-cover.webp"
-        coverSmall="/images/bible120-cover-450.webp"
-        coverWidth={900}
-        coverHeight={1165}
-        title="Bible Verse Sudoku"
-        alt="Bible Verse Sudoku, Book 1: Scripture, King James Version book cover"
-        kicker="Book 1 of the Bible Verse Sudoku Series · 120 easy puzzles · King James Version"
-      />
+      {
+        series.map((b) => (
+          <BookCard
+            href={b.path}
+            cover={`/images/${b.cover}.webp`}
+            coverSmall={`/images/${b.cover}-450.webp`}
+            coverWidth={900}
+            coverHeight={1165}
+            title={b.number === 1 ? "Bible Verse Sudoku" : b.title}
+            alt={`Bible Verse Sudoku, Book ${b.number}: ${b.short}, King James Version book cover`}
+            kicker={`Book ${b.number} of the Bible Verse Sudoku Series · 120 easy puzzles · King James Version`}
+            eyebrow={b.status === "live" ? "Now Available" : "Coming soon"}
+          />
+        ))
+      }
       <BookCard />
     </div>
   </section>

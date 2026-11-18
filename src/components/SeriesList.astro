@@ -1,0 +1,19 @@
+---
+import series from "../data/bible_series.json";
+const { current = 1 } = Astro.props;
+---
+
+<ol class="series-list">
+  {
+    series.map((b) => (
+      <li>
+        {b.number === current ? (
+          <strong>Book {b.number}: {b.short}</strong>
+        ) : (
+          <a href={b.path}>Book {b.number}: {b.short}</a>
+        )}
+        <span>{b.number === current ? "This book" : b.status === "live" ? "Available now" : "Coming soon"}</span>
+      </li>
+    ))
+  }
+</ol>

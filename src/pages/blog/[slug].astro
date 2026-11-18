@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import blog from "../../data/blog_posts.json";
+
+// One page for each blog post. The public build makes a page only for a post that is approved AND whose
+// date has come on the day the site is built (so the morning rebuild puts it up on its day); the local
+// preview also opens the rest, marked. The data comes from build_blog.py.
+const phoenixToday = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Phoenix" });
+const isPublicPost = (p, day) => p.status === "approved" && !!p.date && p.date <= day;
+
+export function getStaticPaths() {
+  const preview = import.meta.env.DEV;
+  const day = new Date().toLocaleDateString("en-CA", { timeZone: "America/Phoenix" });
+  const drafts = preview ? Object.values(import.meta.glob("../../data/blog_drafts.json", { eager: true }))[0]?.default?.posts ?? [] : [];
+  return [...blog.posts, ...drafts]
+    .filter((p) => (p.status === "approved" && !!p.date && p.date <= day) || preview)
+    .map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const isPublic = isPublicPost(post, phoenixToday());
+const heroUrl = !post.hero
+  ? null
+  : post.status === "approved"
+    ? `/images/blog/${post.hero}`
+    : `/blog/draft-picture/${post.hero}`;
+const showDate = (d) =>
+  new Date(`${d}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+// A post Scott has approved in full that only waits for a book to be on sale.
+const heldForBook = (p) =>
+  p.status !== "approved" && p.waiting.length > 0 && p.waiting.every((w) => w.startsWith("a book to be on sale"));
+const booksWaited = (p) =>
+  p.waiting
+    .join(" ")
+    .match(/00\d/g)
+    .map((c) => ({ "007": "Book 6, Women of Scripture", "008": "Book 7, Journeys" })[c] ?? c)
+    .join(" and ");
+---
+
+<BaseLayout title={`${post.title} | Quiet Grid Press`} description={post.summary}>
+  <article class="blog-post">
+    <header class="blog-post-head paper-texture">
+      <div class="shell blog-post-shell">
+        {
+          post.status !== "approved" && !heldForBook(post) && (
+            <p class="blog-draft-tag">
+              Draft: not approved, not on the public site.
+              {post.date ? <> Planned for {showDate(post.date)}.</> : <> No date yet.</>}
+              {post.waiting.length > 0 && <> Waits for: {post.waiting.join("; ")}.</>}
+            </p>
+          )
+        }
+        {
+          heldForBook(post) && (
+            <p class="blog-draft-tag">
+              Approved. Held off the public site until {booksWaited(post)} {booksWaited(post).includes(" and ") ? "are" : "is"} on sale; planned for {showDate(post.date)}.
+            </p>
+          )
+        }
+        {
+          post.status === "approved" && !isPublic && (
+            <p class="blog-draft-tag">
+              Approved. Not on the public site yet: it goes up by itself on {showDate(post.date)}.
+            </p>
+          )
+        }
+        {
+          heroUrl && (
+            <img class="blog-hero" src={heroUrl} alt={post.hero_alt} width="1600" height="900" />
+          )
+        }
+        <p class="eyebrow"><a href="/blog/">Blog</a></p>
+        <h1>{post.title}</h1>
+        {post.date && isPublic && <p class="blog-date">{showDate(post.date)}</p>}
+      </div>
+    </header>
+    <div class="section blog-post-body">
+      <div class="shell blog-post-shell">
+        <div class="blog-copy" set:html={post.body} />
+        <div class="blog-post-foot">
+          <a class="button" href="/books/">Explore the Books</a>
+          <a class="button button-secondary" href="/blog/">More from the Blog</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -22,3 +22,6 @@ dist/
 /z_todo/
 
 REVIEW_RECORD.md
+
+# Unapproved blog posts, for the local preview only (build_blog.py writes it)
+src/data/blog_drafts.json

@@ -2,11 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BookCard from "../components/BookCard.astro";
 import EmailUpdates from "../components/EmailUpdates.astro";
+import series from "../data/bible_series.json";
 ---
 
 <BaseLayout
   title="Quiet Grid Press | Puzzle Books for Adults 50+"
-  description="Calm, thoughtfully designed puzzle books for adults 50+, including Bible Verse Sudoku and USA250 Sudoku."
+  description="Calm, thoughtfully designed puzzle books for adults 50+, including the Bible Verse Sudoku Series and USA250 Sudoku."
 >
   <section class="hero paper-texture">
     <div class="shell hero-grid">
@@ -21,7 +22,7 @@ import EmailUpdates from "../components/EmailUpdates.astro";
         <div class="button-row">
           <a
             class="button"
-            href="https://www.amazon.com/dp/B0HDL8V5ZZ"
+            href="/amazon/bible-verse-sudoku/"
             target="_blank"
             rel="noopener noreferrer"
             data-track="amazon-outbound"
@@ -36,7 +37,7 @@ import EmailUpdates from "../components/EmailUpdates.astro";
       <div class="hero-book">
         <div class="cover-shadow">
           <a
-            href="https://www.amazon.com/dp/B0HDL8V5ZZ"
+            href="/amazon/bible-verse-sudoku/"
             target="_blank"
             rel="noopener noreferrer"
             data-track="amazon-outbound"
@@ -61,6 +62,37 @@ import EmailUpdates from "../components/EmailUpdates.astro";
           <span>Complete answers</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="shell">
+      <div class="section-heading centered">
+        <p class="eyebrow">The Bible Verse Sudoku Series</p>
+        <h2>Seven Collections, One Quiet Habit</h2>
+        <p>
+          Each book pairs 120 Easy puzzles with 120 verses from the King James
+          Version, <span class="nowrap">one puzzle per page.</span>
+        </p>
+      </div>
+      <ul class="series-strip">
+        {
+          series.map((b) => (
+            <li>
+              <a href={b.path}>
+                <img
+                  src={`/images/${b.cover}-450.webp`}
+                  alt={`Bible Verse Sudoku, Book ${b.number}: ${b.short}, King James Version book cover`}
+                  width="450"
+                  height="583"
+                  loading="lazy"
+                />
+                <span>Book {b.number}: {b.short}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
@@ -108,16 +140,16 @@ import EmailUpdates from "../components/EmailUpdates.astro";
         <h2>Care You Can Feel on the Page</h2>
       </div>
       <div class="value">
-        <h3>Calm</h3>
-        <p>Uncluttered layouts and a screen-free pause from the day.</p>
+        <h3>Honest Difficulty</h3>
+        <p>Difficulty labels you can trust, and every puzzle checked for one solution.</p>
       </div>
       <div class="value">
-        <h3>Clarity</h3>
-        <p>Accurate difficulty, readable information, and no filler.</p>
+        <h3>Generous Layouts</h3>
+        <p>One puzzle to a page, readable grids, and room to think.</p>
       </div>
       <div class="value">
-        <h3>Quality</h3>
-        <p>Thoughtful themes, careful checking, and a premium finish.</p>
+        <h3>Nothing Rushed</h3>
+        <p>Thoughtful themes, careful checking, and no filler.</p>
       </div>
     </div>
   </section>

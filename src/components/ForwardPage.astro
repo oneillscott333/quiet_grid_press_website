@@ -1,0 +1,50 @@
+---
+// A page that says where it leads and then opens Amazon. Two uses:
+// - src/pages/[code].astro: a single-book short link from a post. It waits half a second so the page has
+//   loaded, then opens Amazon (Scott, 2026-11-17).
+// - src/pages/amazon/[book].astro: the Amazon buttons of this website. No wait.
+// It is a real page, not a redirect, because the hosting provider counts pages it serves and not redirects.
+// location.replace keeps this page out of the Back button's way. Without JavaScript the meta line forwards.
+// In the local preview the page stays put so it can be read.
+import "../styles/global.css";
+
+const { title, heading, line, url, delayMs = 0, description = "" } = Astro.props;
+const preview = import.meta.env.DEV;
+const fallbackSeconds = delayMs > 0 ? 1 : 0;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#173d35" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!preview && <noscript><meta http-equiv="refresh" content={`${fallbackSeconds}; url=${url}`} /></noscript>}
+    <title>{title} on Amazon | Quiet Grid Press</title>
+  </head>
+  <body id="top">
+    <main id="main-content" class="forward-page">
+      <p class="eyebrow">Quiet Grid Press</p>
+      <h1>{heading}</h1>
+      <p>{line}</p>
+      <p>
+        <a class="button" href={url} rel="noopener" id="forward-link" data-delay={delayMs}>Open it on Amazon</a>
+      </p>
+      <p class="forward-home"><a href="/books/">See all our books</a></p>
+      {preview && <p class="forward-home">Preview only: on the public site this page opens Amazon {delayMs > 0 ? "after half a second" : "at once"}.</p>}
+    </main>
+    {!preview && (
+      <script is:inline>
+        (function () {
+          var a = document.getElementById("forward-link");
+          var wait = Number(a.getAttribute("data-delay")) || 0;
+          setTimeout(function () { window.location.replace(a.href); }, wait);
+        })();
+      </script>
+    )}
+  </body>
+</html>

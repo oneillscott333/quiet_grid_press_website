@@ -1,0 +1,31 @@
+---
+// "What You Will Find": the four cards shown on every Bible Verse Sudoku book page (Scott, 2026-11-17:
+// "either they all need or none"). Every book in the series has 120 Easy puzzles in twelve chapters,
+// a King James Version verse with each puzzle, and solutions for every puzzle (01_plan/qgp_book_catalog.md).
+// A book whose small line must differ passes its own `lines`, keyed puzzles / themes / verses / solutions.
+const { lines = {} } = Astro.props;
+const cards = [
+  { key: "puzzles", figure: "120", heading: "Easy Sudoku Puzzles", line: "An inviting, unhurried challenge for each day." },
+  { key: "themes", figure: "12", heading: "Thoughtful Themes", line: "A gentle path through Scripture and reflection." },
+  { key: "verses", figure: "KJV", heading: "Verses with References", line: "Carefully selected Scripture alongside every puzzle." },
+  { key: "solutions", figure: "100%", heading: "Complete Solutions", line: "Every puzzle is supported by the answer section." },
+];
+---
+
+<section class="section section-soft">
+  <div class="shell">
+    <div class="section-heading centered">
+      <p class="eyebrow">What You Will Find</p>
+      <h2>Clear Puzzles, Meaningful Moments</h2>
+    </div>
+    <div class="spec-grid">
+      {cards.map((card) => (
+        <article>
+          <span>{card.figure}</span>
+          <h3>{card.heading}</h3>
+          <p>{lines[card.key] ?? card.line}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

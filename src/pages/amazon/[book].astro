@@ -1,0 +1,20 @@
+---
+// The Amazon buttons of this website open here: /amazon/<book>/ opens the book's Amazon page at once.
+import ForwardPage from "../../components/ForwardPage.astro";
+import { amazonButtons } from "../../data/amazon_buttons.js";
+
+export function getStaticPaths() {
+  return amazonButtons.map((b) => ({ params: { book: b.key }, props: { b } }));
+}
+
+const { b } = Astro.props;
+const heading = b.standIn ? `${b.title} is not on sale yet.` : `Opening ${b.opensTitle} on Amazon.`;
+const line = b.standIn
+  ? `Opening Book 1 of the series, ${b.opensTitle}, on Amazon.`
+  : "Quiet Grid Press books are sold on Amazon.";
+const description = b.standIn
+  ? `${b.title} is not on sale yet. This opens Book 1 of the series on Amazon.`
+  : `This opens ${b.opensTitle} on Amazon.`;
+---
+
+<ForwardPage title={b.opensTitle} heading={heading} line={line} url={b.url} delayMs={0} description={description} />

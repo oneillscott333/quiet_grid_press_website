@@ -1,5 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import founder from "../data/founder_cards.json";
+
+// The public site shows approved cards only. The local preview also shows drafts and cards on hold, marked as such.
+const preview = import.meta.env.DEV;
+const cards = founder.cards.filter((c) => c.status === "approved" || (preview && c.status !== "retired"));
+const rules = founder.shown_at_once;
 ---
 
 <BaseLayout
@@ -48,35 +54,98 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h2>Premium Means the Care Is Visible</h2>
       </div>
       <div class="value">
-        <h3>Honest Challenge</h3>
+        <h3>Honest Difficulty</h3>
         <p>Difficulty should match its label and feel earned.</p>
       </div>
       <div class="value">
-        <h3>Thoughtful Design</h3>
+        <h3>Generous Layouts</h3>
         <p>Clear hierarchy, generous space, and no unnecessary clutter.</p>
       </div>
       <div class="value">
-        <h3>Respect</h3>
-        <p>Warm, intelligent communication without hype or condescension.</p>
+        <h3>Nothing Rushed</h3>
+        <p>Every puzzle checked and every page reviewed before a book is released.</p>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="shell founder-note">
-      <div class="founder-initial" aria-hidden="true">SO</div>
-      <div>
-        <p class="eyebrow">From the Founder</p>
-        <h2>Building One Good Book at a Time</h2>
-        <p>
-          I started Quiet Grid Press because I wanted puzzle books that
-          treat the reader well: honest difficulty, generous layouts, and
-          nothing rushed. Bible Verse Sudoku is the first book in a series of
-          seven King James Version collections, and the start of a catalog I
-          am building one title at a time, around calm recreation, careful
-          craftsmanship, and lasting value.
-        </p>
+    <div class="shell founder-cards-wrap" data-founder-cards data-rules={JSON.stringify(rules)} data-preview={preview ? "1" : "0"}>
+      <div class="founder-cards" tabindex="0" aria-label="Notes from the founder">
+        {
+          cards.map((card) => (
+            <article
+              class="founder-note"
+              data-card={card.id}
+              data-kind={card.kind}
+              data-windows={JSON.stringify(card.windows ?? [])}
+            >
+              <div class="founder-initial" aria-hidden="true">SO</div>
+              <div>
+                <p class="eyebrow">From the Founder</p>
+                <h2>{card.heading}</h2>
+                <p>{card.text}</p>
+                <p class="founder-sign">Scott O'Neill</p>
+                {preview && (
+                  <p class="founder-preview-tag">
+                    Preview only · {card.status === "approved" ? "Approved" : card.status === "hold" ? `On hold: ${card.waits_for}` : "Draft, not approved"} · {card.kind === "always" ? "always shown" : card.kind === "now" ? `shown ${(card.windows ?? []).map((w) => w.join(" to ")).join("; ") || "when its dates are set"}` : "takes turns, two at a time"} · {card.ties_to}
+                  </p>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <div class="founder-nav">
+        <button type="button" class="founder-arrow" data-dir="-1" aria-label="Previous note">←</button>
+        <span class="founder-count" aria-live="polite"></span>
+        <button type="button" class="founder-arrow" data-dir="1" aria-label="Next note">→</button>
       </div>
     </div>
   </section>
+
+  <script>
+    // Chooses which founder cards are shown today, by the rules in src/data/founder_cards.json.
+    // In the local preview every card is shown, so Scott can read them all; add ?rotation=1 to see
+    // the rotation as a visitor would, and &date=2026-12-05 to see it on another day.
+    const wrap = document.querySelector("[data-founder-cards]");
+    if (wrap) {
+      const rules = JSON.parse(wrap.dataset.rules);
+      const params = new URLSearchParams(location.search);
+      const preview = wrap.dataset.preview === "1";
+      const rotate = !preview || params.get("rotation") === "1";
+      const today = (preview && params.get("date")) || new Date().toLocaleDateString("en-CA");
+      const all = [...wrap.querySelectorAll(".founder-note")];
+      let shown = all;
+      if (rotate) {
+        const always = all.filter((c) => c.dataset.kind === "always");
+        const now = all.filter(
+          (c) => c.dataset.kind === "now" && JSON.parse(c.dataset.windows).some(([from, until]) => from <= today && today <= until)
+        );
+        const pool = all.filter((c) => c.dataset.kind === "evergreen");
+        const days = Math.floor((Date.parse(today) - Date.parse(rules.evergreen_start)) / 86400000);
+        const turn = Math.max(0, Math.floor(days / rules.evergreen_days));
+        const room = Math.max(0, rules.most - always.length - now.length);
+        const want = Math.min(pool.length, room, Math.max(rules.evergreen_at_a_time, rules.usual - always.length - now.length));
+        const evergreen = [];
+        for (let i = 0; i < want; i++) evergreen.push(pool[(turn * rules.evergreen_at_a_time + i) % pool.length]);
+        shown = [...always, ...now, ...evergreen].slice(0, rules.most);
+        all.forEach((c) => { if (!shown.includes(c)) c.remove(); });
+        const track = wrap.querySelector(".founder-cards");
+        shown.forEach((c) => track.appendChild(c));
+      }
+      const track = wrap.querySelector(".founder-cards");
+      const count = wrap.querySelector(".founder-count");
+      const index = () => Math.round(track.scrollLeft / track.clientWidth);
+      const label = () => { count.textContent = `${Math.min(index() + 1, shown.length)} of ${shown.length}`; };
+      wrap.querySelectorAll(".founder-arrow").forEach((button) =>
+        button.addEventListener("click", () => {
+          const next = (index() + Number(button.dataset.dir) + shown.length) % shown.length;
+          track.scrollTo({ left: next * track.clientWidth, behavior: "smooth" });
+        })
+      );
+      track.addEventListener("scroll", label, { passive: true });
+      if (shown.length < 2) wrap.querySelector(".founder-nav").hidden = true;
+      label();
+    }
+  </script>
 </BaseLayout>

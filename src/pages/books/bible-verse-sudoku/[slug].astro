@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SeriesList from "../../../components/SeriesList.astro";
+import BookSpecs from "../../../components/BookSpecs.astro";
+import series from "../../../data/bible_series.json";
+
+export function getStaticPaths() {
+  return series
+    .filter((b) => b.slug)
+    .map((book) => ({ params: { slug: book.slug }, props: { book } }));
+}
+
+const { book } = Astro.props;
+// A book that is not on sale yet opens Book 1 of the series on Amazon (Scott, 2026-11-17).
+const buyUrl = `/amazon/${book.slug}/`; // a page of this site that opens Amazon at once, so the button is counted
+const kjv = " from the King James Version";
+const subtitleStart = book.subtitle.endsWith(kjv) ? book.subtitle.slice(0, -kjv.length) : book.subtitle;
+const subtitleEnd = book.subtitle.endsWith(kjv) ? "from the King James Version." : "";
+const isLive = book.status === "live";
+const buyLabel = isLive ? "View on Amazon" : "Find on Amazon";
+const [intro, chapters, solutions, printed] = book.paragraphs;
+---
+
+<BaseLayout
+  title={`${book.title} | Quiet Grid Press`}
+  description={`${book.subtitle}. Book ${book.number} of the Bible Verse Sudoku Series.`}
+>
+  <section class="book-detail-hero paper-texture">
+    <div class="shell book-detail-grid">
+      <div class="detail-cover cover-shadow">
+        <img
+          src={`/images/${book.cover}.webp`}
+          srcset={`/images/${book.cover}-450.webp 450w, /images/${book.cover}.webp 900w`}
+          sizes="(max-width: 680px) 78vw, 430px"
+          alt={`Bible Verse Sudoku, Book ${book.number}: ${book.short}, King James Version book cover`}
+          width="900"
+          height="1165"
+        />
+      </div>
+      <div class="detail-copy">
+        <p class="eyebrow">
+          Book {book.number} of the Bible Verse Sudoku Series · {isLive ? "Now Available" : "Coming soon"}
+        </p>
+        <h1>Bible Verse Sudoku</h1>
+        <p class="subtitle">{book.short}</p>
+        <p class="lede">{subtitleEnd ? <>{subtitleStart} <span class="nowrap">{subtitleEnd}</span></> : <>{book.subtitle}.</>}</p>
+        {!isLive && (
+          <p class="coming-soon"><strong>Coming soon.</strong> This book is not on sale yet. Until it is, the button below opens Book 1 of the series on Amazon.</p>
+        )}
+        <div class="detail-facts" aria-label="Book details">
+          <span><strong>120</strong> easy puzzles</span>
+          <span><strong>8.5 × 11</strong> inches</span>
+          <span><strong>One</strong> puzzle per page</span>
+          <span><strong>KJV</strong> verses with references</span>
+        </div>
+        <a
+          class="button"
+          href={buyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="amazon-outbound"
+        >
+          {buyLabel}
+        </a>
+        <p class="retailer-note">Current price and availability are shown on Amazon.</p>
+        {isLive && (
+          <p class="retailer-note review-note">Already have this book? An honest review on its Amazon page helps other solvers find it.</p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell prose-grid">
+      <div>
+        <p class="eyebrow">Inside the Book</p>
+        <h2>{book.short}, One Quiet Page at a Time</h2>
+      </div>
+      <div class="prose">
+        <p>{intro}</p>
+        <p>{chapters}</p>
+        <p>{solutions} {printed}</p>
+      </div>
+    </div>
+  </section>
+
+  <BookSpecs lines={book.spec_lines} />
+
+  <section class="section section-soft">
+    <div class="shell prose-grid">
+      <div>
+        <p class="eyebrow">Part of a Series</p>
+        <h2>The Bible Verse Sudoku Series</h2>
+      </div>
+      <div class="prose">
+        <p>
+          <em>{book.title}</em> is Book {book.number} of seven collections.
+          Each one pairs 120 Easy puzzles with 120 verses from the King James
+          Version, in the same calm, one-puzzle-per-page layout.
+        </p>
+        <SeriesList current={book.number} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell closing-card">
+      <div>
+        <p class="eyebrow">A Thoughtful Gift or Daily Pause</p>
+        <h2>Make Room for Scripture and a Satisfying Puzzle</h2>
+        <p>
+          A peaceful, screen-free companion for quiet mornings, thoughtful
+          breaks, or a meaningful gift.
+        </p>
+      </div>
+      <a
+        class="button"
+        href={buyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="amazon-outbound"
+      >
+        {buyLabel}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

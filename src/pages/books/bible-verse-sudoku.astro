@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SeriesList from "../../components/SeriesList.astro";
+import BookSpecs from "../../components/BookSpecs.astro";
 ---
 
 <BaseLayout
@@ -24,20 +26,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <div class="detail-copy">
         <p class="eyebrow">Book 1 of the Bible Verse Sudoku Series · Now Available</p>
         <h1>Bible Verse Sudoku</h1>
-        <p class="subtitle">King James Version Edition</p>
+        <p class="subtitle">Scripture</p>
         <p class="lede">
-          Settle into 120 easy Sudoku puzzles, each paired with a carefully
-          selected verse from the King James Version.
+          120 Easy Puzzles with Scripture <span class="nowrap">from the King James Version.</span>
         </p>
         <div class="detail-facts" aria-label="Book details">
           <span><strong>120</strong> easy puzzles</span>
           <span><strong>8.5 × 11</strong> inches</span>
           <span><strong>One</strong> puzzle per page</span>
           <span><strong>KJV</strong> verses with references</span>
+          <span><strong>Project Gutenberg KJV</strong> <a href="https://quietgridpress.com/kjv" target="_blank" rel="noopener noreferrer">quietgridpress.com/kjv</a></span>
         </div>
         <a
           class="button"
-          href="https://www.amazon.com/dp/B0HDL8V5ZZ"
+          href="/amazon/bible-verse-sudoku/"
           target="_blank"
           rel="noopener noreferrer"
           data-track="amazon-outbound"
@@ -45,6 +47,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           View on Amazon
         </a>
         <p class="retailer-note">Current price and availability are shown on Amazon.</p>
+        <p class="retailer-note review-note">Already have this book? An honest review on its Amazon page helps other solvers find it.</p>
       </div>
     </div>
   </section>
@@ -71,36 +74,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="section section-soft">
-    <div class="shell">
-      <div class="section-heading centered">
-        <p class="eyebrow">What You Will Find</p>
-        <h2>Clear Puzzles, Meaningful Moments</h2>
-      </div>
-      <div class="spec-grid">
-        <article>
-          <span>120</span>
-          <h3>Easy Sudoku Puzzles</h3>
-          <p>An inviting, unhurried challenge for each day.</p>
-        </article>
-        <article>
-          <span>12</span>
-          <h3>Thoughtful Themes</h3>
-          <p>A gentle path through Scripture and reflection.</p>
-        </article>
-        <article>
-          <span>KJV</span>
-          <h3>Verses with References</h3>
-          <p>Carefully selected Scripture alongside every puzzle.</p>
-        </article>
-        <article>
-          <span>100%</span>
-          <h3>Complete Solutions</h3>
-          <p>Every puzzle is supported by the answer section.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <BookSpecs />
 
   <section class="section section-soft">
     <div class="shell prose-grid">
@@ -110,19 +84,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
       <div class="prose">
         <p>
-          <em>Bible Verse Sudoku</em> is Book 1 of a planned series of seven
-          collections. Each one pairs 120 Easy puzzles with 120 verses from the
+          <em>Bible Verse Sudoku</em> is Book 1 of seven collections. Each one pairs 120 Easy puzzles with 120 verses from the
           King James Version, in the same calm, one-puzzle-per-page layout.
         </p>
-        <ol class="series-list">
-          <li><strong>Book 1: Bible Verse Sudoku</strong> <span>Available now</span></li>
-          <li>Book 2: Psalms <span>Coming soon</span></li>
-          <li>Book 3: Proverbs and Wisdom <span>Coming soon</span></li>
-          <li>Book 4: The Words of Jesus <span>Coming soon</span></li>
-          <li>Book 5: Parables <span>Coming soon</span></li>
-          <li>Book 6: Women of Scripture <span>Coming soon</span></li>
-          <li>Book 7: Journeys <span>Coming soon</span></li>
-        </ol>
+        <SeriesList current={1} />
       </div>
     </div>
   </section>
@@ -139,7 +104,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
       <a
         class="button"
-        href="https://www.amazon.com/dp/B0HDL8V5ZZ"
+        href="/amazon/bible-verse-sudoku/"
         target="_blank"
         rel="noopener noreferrer"
         data-track="amazon-outbound"

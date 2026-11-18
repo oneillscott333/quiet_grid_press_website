@@ -1,0 +1,115 @@
+{
+  "_about": "The founder's cards on the About page. Every card is in Scott's own voice and only Scott approves one. status: approved (shown on the public site), draft (shown only in the local preview, marked Draft), hold (waits for the thing named in 'waits_for'), retired (kept here, never shown). kind: always (in every rotation), now (shown only inside its windows, for a season, a release or a campaign), evergreen (takes turns: two at a time, changing every two weeks). The plan is in 06_market/00_imprint/market_founder_cards.md.",
+  "shown_at_once": {
+    "fewest": 3,
+    "usual": 4,
+    "most": 5,
+    "evergreen_at_a_time": 2,
+    "evergreen_days": 14,
+    "evergreen_start": "2026-11-16"
+  },
+  "cards": [
+    {
+      "id": "mission",
+      "kind": "always",
+      "status": "approved",
+      "ties_to": "The mission statement; campaign c01, post 10",
+      "heading": "Building One Good Book at a Time",
+      "text": "I started Quiet Grid Press because I wanted puzzle books that treat the reader well: honest difficulty, generous layouts, and nothing rushed. Bible Verse Sudoku is the first book in a series of seven King James Version collections, and the start of a catalog I am building one title at a time, around calm recreation, careful craftsmanship, and lasting value."
+    },
+    {
+      "id": "thanksgiving",
+      "kind": "now",
+      "status": "approved",
+      "windows": [
+        [
+          "2026-11-18",
+          "2026-11-27"
+        ]
+      ],
+      "ties_to": "The Thanksgiving posts of campaigns c01 and c02",
+      "heading": "With Thanks",
+      "text": "Thank you for making room for a puzzle book from a small press. I am grateful for every reader who picks up a pencil and spends a quiet hour with one of our books.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "gift",
+      "kind": "now",
+      "status": "approved",
+      "windows": [
+        [
+          "2026-11-28",
+          "2026-12-24"
+        ]
+      ],
+      "ties_to": "Campaign c01, post 09 (thoughtful gifts); blog c02_03 (a quiet gift)",
+      "heading": "A Quiet Gift",
+      "text": "A puzzle book is a quiet gift. It asks for nothing but a pencil and a few unhurried minutes. I hope ours feels made with care when it is opened.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "usa250",
+      "kind": "now",
+      "status": "hold",
+      "waits_for": "The new USA250 Sudoku live on Amazon; then Scott gives the dates for its window",
+      "windows": [],
+      "ties_to": "The release of USA250 Sudoku",
+      "heading": "250 Puzzles for the 250th",
+      "text": "USA250 Sudoku is 250 puzzles in ten chapters, made for America's 250th year."
+    },
+    {
+      "id": "honest_easy",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "Campaign c01, posts 03 and 14 (honest difficulty)",
+      "heading": "When a Book Says Easy",
+      "text": "A difficulty label is a promise. When one of our books says Easy, every puzzle in it can be finished with plain logic and no guessing, and each one is checked before the book is printed.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "one_solution",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "Campaign c01, post 04; blog c01_01 (why every puzzle has one solution)",
+      "heading": "The Quiet Part of the Work",
+      "text": "Every puzzle is checked to have exactly one solution before it goes into a book. Nobody sees that work. You feel it when a puzzle simply makes sense.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "one_page",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "Campaign c01, post 05 (one puzzle to a page)",
+      "heading": "Room to Think",
+      "text": "I give each puzzle a page of its own. A clear grid and open space are a way of respecting the person holding the pencil.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "series",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "Campaign c02; blog c02_01 (seven books, one series)",
+      "heading": "A Verse with Every Puzzle",
+      "text": "Bible Verse Sudoku grew into seven collections from the King James Version. In each one, every puzzle is paired with a verse, printed exactly, with its chapter and verse.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "name",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "Campaign c01, post 12 (what the name means)",
+      "heading": "What the Name Means",
+      "text": "The name says what I am after. Quiet: calm and uncluttered. Grid: logic you can finish. Press: the same care in every book.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    },
+    {
+      "id": "one_careful_move",
+      "kind": "evergreen",
+      "status": "approved",
+      "ties_to": "The thank-you page of Bible Verse Sudoku (Scott's own approved words)",
+      "heading": "One Careful Move at a Time",
+      "text": "A Sudoku grid starts with some numbers, and the rest is revealed one careful move at a time. Some spots pop up quickly, while others make us pause, look again, and trust that a clear next move is still possible.",
+      "approved": "Scott O'Neill, 2026-11-17"
+    }
+  ]
+}
