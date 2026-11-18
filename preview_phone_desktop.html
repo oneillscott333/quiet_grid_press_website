@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-no-totop>
+<head>
+<meta charset="utf-8">
+<title>QGP website: phone and desktop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  One local page that shows the Quiet Grid Press website as a phone and as a desktop, side by side.
+  Source: 03_qgp_books/04_tools/qgp_website/preview_phone_desktop.html (not in src/ or public/, so it is never
+  part of the public website build). The dashboard serves a copy at
+  http://127.0.0.1:3199/artifact/qgp_website_phone_desktop/ ; after a change here, copy this file to
+  01_workspace_tools/01_local_site_manager/artifact/qgp_website_phone_desktop/index.html.
+-->
+<style>
+:root{--paper:#f5f1e9;--paper-raised:#fffdf8;--line:#ded9ce;--ink:#25312d;--ink-soft:#64716a;--evergreen:#23483d;--accent:#2d6353;--accent-soft:#356250;--gold:#8a7550}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px Arial,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+.bar{background:var(--evergreen);color:#fffdf8;padding:10px 16px;display:flex;gap:10px 18px;align-items:center;flex-wrap:wrap}
+.bar h1{font:bold 19px Georgia,serif;margin:0 6px 0 0}
+.group{display:flex;gap:0;align-items:center}
+.group button{border:1px solid #cfe0d5;background:transparent;color:#fffdf8;padding:7px 14px;font:bold 14px Arial,sans-serif;cursor:pointer;border-radius:0}
+.group button:first-child{border-radius:8px 0 0 8px}
+.group button:last-child{border-radius:0 8px 8px 0}
+.group button + button{border-left:0}
+.group button.on{background:#fffdf8;color:var(--evergreen)}
+.bar button.plain{border:1px solid #cfe0d5;background:transparent;color:#fffdf8;padding:7px 14px;font:bold 14px Arial,sans-serif;cursor:pointer;border-radius:8px}
+.bar label{font-size:13px;color:#d5e4d9}
+.bar input{font:15px Arial,sans-serif;padding:6px 9px;border:1px solid #cfe0d5;border-radius:8px;width:230px;background:#fffdf8;color:var(--ink)}
+.links{background:var(--paper-raised);border-bottom:1px solid var(--line);padding:7px 16px;display:flex;gap:6px 8px;flex-wrap:wrap;align-items:center;font-size:14px}
+.links span{color:var(--ink-soft);margin-right:4px}
+.links button{border:1px solid var(--line);background:#fff;color:var(--accent-soft);padding:4px 10px;border-radius:999px;font:14px Arial,sans-serif;cursor:pointer}
+.links button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.stage{flex:1;min-height:0;display:flex;gap:18px;padding:14px 16px 10px;align-items:flex-start;justify-content:center}
+.col{display:flex;flex-direction:column;min-width:0;height:100%}
+.col.desk{flex:1}
+.cap{font-size:13px;color:var(--ink-soft);margin:0 0 6px;white-space:nowrap}
+.cap b{color:var(--ink)}
+.box{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.phone .box{border:9px solid #25312d;border-radius:34px;box-shadow:0 6px 18px rgba(37,49,45,.22)}
+.desk .box{border-radius:8px;box-shadow:0 4px 14px rgba(37,49,45,.14)}
+iframe{border:0;display:block;transform-origin:0 0;background:#fff}
+.note{font-size:13px;color:var(--ink-soft);padding:0 16px 8px;margin:0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Website: phone and desktop</h1>
+  <div class="group" id="mode" role="group" aria-label="What to show">
+    <button type="button" data-mode="both">Both</button><button type="button" data-mode="phone">Phone</button><button type="button" data-mode="desk">Desktop</button>
+  </div>
+  <div class="group" id="source" role="group" aria-label="Which copy of the site">
+    <button type="button" data-source="local" title="The copy on this Mac, before a push">Local preview</button><button type="button" data-source="live" title="quietgridpress.com, after a push">Live site</button>
+  </div>
+  <label for="path">Page</label>
+  <input id="path" type="text" value="/" spellcheck="false" autocomplete="off" aria-label="Page address, for example /about/">
+  <button type="button" class="plain" id="go">Go</button>
+  <button type="button" class="plain" id="reload">Reload both</button>
+</div>
+<div class="links" id="links"><span>Pages:</span></div>
+<div class="stage" id="stage">
+  <div class="col phone" id="colPhone">
+    <p class="cap"><b>Phone</b> 390 &times; 844 <span id="phoneScale"></span></p>
+    <div class="box" id="boxPhone"><iframe id="fPhone" title="The website at phone size" width="390" height="844"></iframe></div>
+  </div>
+  <div class="col desk" id="colDesk">
+    <p class="cap"><b>Desktop</b> 1280 wide <span id="deskScale"></span></p>
+    <div class="box" id="boxDesk"><iframe id="fDesk" title="The website at desktop size" width="1280" height="800"></iframe></div>
+  </div>
+</div>
+<p class="note" id="note">The links above move both views to the same page. A click inside one view moves only that view. The phone view shows the phone layout at a phone's width; touch and Safari on a real iPhone can still differ, so a last look on the phone itself is worth keeping.</p>
+<script>
+(function () {
+  var BASES = { local: 'http://127.0.0.1:4321', live: 'https://www.quietgridpress.com' };
+  var PAGES = [
+    ['Home', '/'], ['Books', '/books/'], ['Bible Verse series', '/books/bible-verse-sudoku/'],
+    ['Book 2', '/books/bible-verse-sudoku/psalms/'], ['Book 3', '/books/bible-verse-sudoku/proverbs-and-ecclesiastes/'],
+    ['Book 4', '/books/bible-verse-sudoku/words-of-jesus/'], ['Book 5', '/books/bible-verse-sudoku/parables/'],
+    ['Book 6', '/books/bible-verse-sudoku/women-of-scripture/'], ['Book 7', '/books/bible-verse-sudoku/journeys/'],
+    ['USA250', '/books/usa250-sudoku/'], ['About', '/about/'], ['Common Questions', '/faq/'], ['Blog', '/blog/'], ['Newsletters', '/newsletters/'],
+    ['Contact', '/contact/'], ['Privacy', '/privacy/'], ['Terms', '/terms/'], ['Accessibility', '/accessibility/']
+  ];
+  var PHONE_W = 390, PHONE_H = 844, DESK_W = 1280, FRAME = 18;
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { mode: 'both', source: 'local', path: '/' };
+  try {
+    var saved = JSON.parse(localStorage.getItem('qgp_phone_desktop') || '{}');
+    if (saved.mode) state.mode = saved.mode;
+    if (saved.source && BASES[saved.source]) state.source = saved.source;
+    if (saved.path) state.path = saved.path;
+  } catch (e) {}
+  function remember() { try { localStorage.setItem('qgp_phone_desktop', JSON.stringify(state)); } catch (e) {} }
+
+  function cleanPath(p) {
+    p = (p || '/').trim();
+    p = p.replace(/^https?:\/\/[^\/]+/i, '');
+    if (p.charAt(0) !== '/') p = '/' + p;
+    return p;
+  }
+  function load(bust) {
+    var url = BASES[state.source] + state.path;
+    var u = bust ? url + (url.indexOf('?') < 0 ? '?' : '&') + 'r=' + Date.now() : url;
+    $('fPhone').src = u;
+    $('fDesk').src = u;
+    $('path').value = state.path;
+    Array.prototype.forEach.call(document.querySelectorAll('#links button'), function (b) {
+      b.classList.toggle('on', b.getAttribute('data-path') === state.path);
+    });
+    remember();
+  }
+  function paint() {
+    Array.prototype.forEach.call(document.querySelectorAll('#mode button'), function (b) {
+      b.classList.toggle('on', b.getAttribute('data-mode') === state.mode);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('#source button'), function (b) {
+      b.classList.toggle('on', b.getAttribute('data-source') === state.source);
+    });
+    $('colPhone').hidden = state.mode === 'desk';
+    $('colDesk').hidden = state.mode === 'phone';
+    fit();
+  }
+  function fit() {
+    var stage = $('stage');
+    var cap = 26;
+    var availH = stage.clientHeight - 24 - cap;
+    var availW = stage.clientWidth - 32;
+    var ps = Math.min(1, (availH - FRAME) / PHONE_H);
+    if (ps < 0.4) ps = 0.4;
+    var phoneOuterW = Math.round(PHONE_W * ps) + FRAME;
+    if (state.mode !== 'desk') {
+      var f = $('fPhone'), b = $('boxPhone');
+      f.style.width = PHONE_W + 'px'; f.style.height = PHONE_H + 'px';
+      f.style.transform = 'scale(' + ps + ')';
+      b.style.width = phoneOuterW + 'px';
+      b.style.height = (Math.round(PHONE_H * ps) + FRAME) + 'px';
+      $('phoneScale').textContent = ps < 0.995 ? '(shown at ' + Math.round(ps * 100) + '%)' : '(actual size)';
+    }
+    if (state.mode !== 'phone') {
+      var w = state.mode === 'both' ? availW - phoneOuterW - 18 : availW;
+      if (w < 200) w = 200;
+      var ds = Math.min(1, (w - 2) / DESK_W);
+      var d = $('fDesk'), db = $('boxDesk');
+      var innerH = Math.max(300, Math.floor((availH - 2) / ds));
+      d.style.width = DESK_W + 'px'; d.style.height = innerH + 'px';
+      d.style.transform = 'scale(' + ds + ')';
+      db.style.width = (Math.round(DESK_W * ds) + 2) + 'px';
+      db.style.height = (Math.round(innerH * ds) + 2) + 'px';
+      $('deskScale').textContent = ds < 0.995 ? '(shown at ' + Math.round(ds * 100) + '%)' : '(actual size)';
+    }
+  }
+
+  var links = $('links');
+  PAGES.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.textContent = p[0]; b.setAttribute('data-path', p[1]);
+    b.addEventListener('click', function () { state.path = p[1]; load(false); });
+    links.appendChild(b);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#mode button'), function (b) {
+    b.addEventListener('click', function () { state.mode = b.getAttribute('data-mode'); remember(); paint(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#source button'), function (b) {
+    b.addEventListener('click', function () { state.source = b.getAttribute('data-source'); paint(); load(false); });
+  });
+  function go() { state.path = cleanPath($('path').value); load(false); }
+  $('go').addEventListener('click', go);
+  $('path').addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
+  $('reload').addEventListener('click', function () { load(true); });
+  window.addEventListener('resize', fit);
+  paint();
+  load(false);
+})();
+</script>
+</body>
+</html>
