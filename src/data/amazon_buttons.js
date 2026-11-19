@@ -16,7 +16,7 @@ export const amazonButtons = [
       standIn: opens !== b,
     };
   }),
-  // The earlier edition of USA250 Sudoku, the one on sale today (catalog entry 002_sudoku_usa250).
+  // USA250 Sudoku (catalog entry 002_sudoku_usa250). The new book is an update of the live paperback and keeps its ASIN.
   { key: "usa250-sudoku", title: "USA250 Sudoku", opensTitle: "USA250 Sudoku", url: "https://www.amazon.com/dp/B0H7QJJYWZ", standIn: false },
 ];
 
